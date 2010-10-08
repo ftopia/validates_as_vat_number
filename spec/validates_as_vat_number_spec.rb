@@ -12,8 +12,13 @@ describe Develon::ValidatesAsVatNumber do
     develon.valid?.should == true
   end
   
+  it "should validate HCODE" do
+    develon = Company.new(:name => 'HCODE', :vat => 'BE0883236072')
+    develon.valid?.should == true
+  end
+    
   it "should invalidate a fake company" do
-    fake_company = Company.new(:name => 'Fake Company', :vat => 'IT000003018')
+    fake_company = Company.new(:name => 'Fake Company', :vat => 'BE0883236071')
     fake_company.valid?.should == false
     fake_company.errors.on('vat').should == 'is an invalid VAT number'
   end
