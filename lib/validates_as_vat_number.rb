@@ -25,7 +25,7 @@ module Develon
         else
           message = 'has an invalid country'
         end
-        record.errors.add(attr_name, :not_valid, :default => message) unless message.nil?
+        record.errors.add(attr_name, :not_valid, :message => message) unless message.nil?
       end
     end
 
