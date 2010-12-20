@@ -32,7 +32,7 @@ module Develon
     protected
 
     def vies_driver
-      wsdl = "http://ec.europa.eu/taxation_customs/vies/services/checkVatService?wsdl"
+      wsdl = "http://ec.europa.eu/taxation_customs/vies/services/checkVatService.wsdl"
       @driver = Savon::Client.new(wsdl)
     end
 
