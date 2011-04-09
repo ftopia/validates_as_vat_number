@@ -12,8 +12,6 @@ begin
     gem.email = "lab@develon.com"
     gem.homepage = "http://github.com/develon/validates_as_vat_number"
     gem.authors = ["Alessandro Dal Grande", "Marco Sanson"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "savon", ">= 0.7.5"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

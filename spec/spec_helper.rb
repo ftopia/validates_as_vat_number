@@ -3,12 +3,12 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rubygems'
 require 'active_record'
 require File.dirname(__FILE__) + '/../lib/validates_as_vat_number'
-require 'spec'
-require 'spec/autorun'
+require 'rspec'
+require 'rspec/autorun'
 
 require File.join(File.dirname(__FILE__), '..', 'init')
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   
 end
 

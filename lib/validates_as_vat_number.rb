@@ -18,14 +18,14 @@ module Develon
                      'PL' => /^PL\d{10}$/, 'PT' => /^PT\d{9}/, 'RO' => /^RO\d{2,10}$/, 'SE' => /^SE\d{12}$/, 'SI' => /^SI\d{8}$/,
                      'SK' =>/^SK\d{10}$/ }
 
-      validates_each(attr_names,configuration) do |record, attr_name, value|
+      validates_each(attr_names, configuration) do |record, attr_name, value|
         country = country_code(value)
         if structures.include?(country)
           message = configuration[:message] unless structures[country].match(value) && check_vat(country, value.gsub(/^\w\w/, ''))
         else
           message = 'has an invalid country'
         end
-        record.errors.add(attr_name, :not_valid, :default => message) unless message.nil?
+        record.errors.add(attr_name, :not_valid, :message => message) unless message.nil?
       end
     end
 
