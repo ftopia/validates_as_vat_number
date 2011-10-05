@@ -32,13 +32,17 @@ module Develon
     protected
 
     def vies_driver
-      wsdl = "http://ec.europa.eu/taxation_customs/vies/services/checkVatService.wsdl"
+      wsdl = "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl"
       @driver = Savon::Client.new(wsdl)
     end
 
     def check_vat(country_code, vat_number)
-      @driver = vies_driver unless @driver
-      @driver.check_vat { |soap| soap.body = { :country_code => country_code, :vat_number => vat_number } }.to_hash[:check_vat_response][:valid]
+      @driver ||= vies_driver
+      response = @driver.request :wsdl, :check_vat do |soap|
+        soap.namespaces["xmlns:wsdl"] = "urn:ec.europa.eu:taxud:vies:services:checkVat:types"
+        soap.body = { :country_code => country_code, :vat_number => vat_number }
+      end
+      response.to_hash[:check_vat_response][:valid]
     end
     
     def country_code(vat)
