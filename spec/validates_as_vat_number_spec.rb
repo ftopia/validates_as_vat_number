@@ -6,17 +6,17 @@ describe Develon::ValidatesAsVatNumber do
       validates_as_vat_number :vat
     end
   end
-  
+
   it "should validate Develon Company" do
     develon = Company.new(:name => 'Develon', :vat => 'IT03018900245')
     develon.valid?.should == true
   end
-  
+
   it "should validate HCODE" do
     develon = Company.new(:name => 'HCODE', :vat => 'BE0883236072')
     develon.valid?.should == true
   end
-    
+
   it "should validate spaceless French number" do
     sarlyo = Company.new(:name => 'SARL Y O', :vat => 'FR58418814943')
     sarlyo.valid?.should == true
@@ -33,7 +33,7 @@ describe Develon::ValidatesAsVatNumber do
     fake_company.valid?.should == false
     fake_company.errors['vat'].should == 'has an invalid country'
   end
-  
+
   it "should invalidate locally if country is not valid" do
     develon = Company.new(:name => 'Develon', :vat => 'KO03018900245')
     develon.valid?.should == false
